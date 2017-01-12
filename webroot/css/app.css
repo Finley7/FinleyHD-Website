@@ -1,0 +1,121 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto+Mono:300,300i,400,400i,700,700i');
+
+body, html {
+    font-family: 'Roboto Mono', monospace;
+    margin: 0;
+}
+
+h1, h2, h3, h4, h5 {
+    font-family: 'Roboto Mono', monospace !important;
+    margin: 0;
+    padding: 0;
+}
+
+a, a:visited, a:active, a:focus {
+    color:#000;
+    border-bottom: 2px dashed transparent;
+    -webkit-transition: border-bottom .1s linear;
+    -moz-transition: border-bottom .1s linear;
+    -ms-transition: border-bottom .1s linear;
+    -o-transition: border-bottom .1s linear;
+    transition: border-bottom .1s linear;
+}
+a:hover {
+    color:#000;
+    border-bottom: 2px dashed #2196f3;
+}
+
+.header {
+    background: #fff;
+    margin-top: 60px;
+}
+
+.header .menu {
+    background: #fff;
+}
+
+.header .menu li a {
+    color: #000;
+    border-bottom: 2px dashed transparent;
+}
+
+.header .menu li a:hover {
+    border-bottom: 2px dashed #2196f3;
+}
+
+.text-muted {
+    color: #666;
+}
+
+.error-message {
+    color: #ec5840;
+    padding-bottom: .8rem;
+}
+
+.form-error {
+    display: block;
+    margin-top: inherit;
+    margin-bottom: inherit;
+    font-size: inherit;
+    font-weight: inherit;
+}
+
+[type=color], [type=date], [type=datetime-local], [type=datetime], [type=email], [type=month], [type=number], [type=password], [type=search], [type=tel], [type=text], [type=time], [type=url], [type=week], textarea {
+    box-shadow: 0;
+    -webkit-transition: none;
+    transition: none;
+    border-radius: 2px;
+}
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input[type=number] {
+    -moz-appearance: textfield;
+}
+
+.message {
+    padding: 5px 15px;
+}
+
+.message.error {
+    background: #f44336;
+    color: #fff;
+}
+
+.message.error:before {
+    content: '\f071';
+    font-family: 'FontAwesome';
+    padding-right: 0.3125rem;
+}
+
+.message.success {
+    background: #4caf50;
+    color: #fff;
+}
+
+.message.success:before {
+    content: '\f00c';
+    font-family: 'FontAwesome';
+    padding-right: 0.3125rem;
+}
+
+footer {
+    background: #e3f2fd;
+    padding-top: 15px;
+}
+
+.right-footer {
+    text-align: right;
+}
+
+.right-footer ul {
+    list-style-type: none;
+}
+
+.left-footer {
+    padding-top: 15px;
+}

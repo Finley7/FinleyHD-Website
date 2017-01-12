@@ -17,6 +17,7 @@ namespace App\Controller;
 use App\Model\Entity\User;
 use Cake\Controller\Controller;
 use Cake\Event\Event;
+use Cake\ORM\Query;
 use Cake\ORM\TableRegistry;
 
 /**
@@ -48,13 +49,31 @@ class AppController extends Controller
         $this->loadComponent('Csrf');
         $this->loadComponent('Security');
 
-        $this->loadComponent('Auth', [
+        $this->loadComponent(
+            'Auth',
+            [
             'authorize' => 'FHD',
-        ]);
+            ]
+        );
 
         $this->loadModel('Pages');
 
-        $pages = $this->Pages->find('all', ['contain' => 'Slug']);
+        $this->loadModel();
+
+        $pages = $this->Pages->find(
+            'all',
+            [
+            'contain' => [
+                'Slugs' => function (Query $q) {
+                    return $q->order(['created' => 'DESC']);
+                }
+            ],
+            'order' => [
+                'Pages.created' => 'DESC',
+            ]
+            ]
+        );
+
         $this->set(compact('pages'));
 
 
@@ -67,13 +86,13 @@ class AppController extends Controller
     /**
      * Before render callback.
      *
-     * @param \Cake\Event\Event $event The beforeRender event.
+     * @param  \Cake\Event\Event $event The beforeRender event.
      * @return \Cake\Network\Response|null|void
      */
     public function beforeRender(Event $event)
     {
-        if (!array_key_exists('_serialize', $this->viewVars) &&
-            in_array($this->response->type(), ['application/json', 'application/xml'])
+        if (!array_key_exists('_serialize', $this->viewVars)
+            && in_array($this->response->type(), ['application/json', 'application/xml'])
         ) {
             $this->set('_serialize', true);
         }

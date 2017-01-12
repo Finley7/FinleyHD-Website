@@ -54,7 +54,7 @@ Router::scope('/', function (RouteBuilder $routes) {
 });
 
 Router::prefix('management', function(RouteBuilder $routes){
-
+    $routes->fallbacks(DashedRoute::class);
 });
 
 /**

@@ -27,7 +27,7 @@ class UsersTable extends Table
     /**
      * Initialize method
      *
-     * @param array $config The configuration for the Table.
+     * @param  array $config The configuration for the Table.
      * @return void
      */
     public function initialize(array $config)
@@ -40,17 +40,20 @@ class UsersTable extends Table
 
         $this->addBehavior('Timestamp');
 
-        $this->hasMany('Roles', [
+        $this->hasMany(
+            'Roles',
+            [
             'foreignKey' => 'user_id',
             'targetForeignKey' => 'role_id',
             'joinTable' => 'user_roles'
-        ]);
+            ]
+        );
     }
 
     /**
      * Default validation rules.
      *
-     * @param \Cake\Validation\Validator $validator Validator instance.
+     * @param  \Cake\Validation\Validator $validator Validator instance.
      * @return \Cake\Validation\Validator
      */
     public function validationDefault(Validator $validator)
@@ -62,6 +65,9 @@ class UsersTable extends Table
 
         $validator
             ->requirePresence('username', 'create')
+            ->alphaNumeric('username')
+            ->minLength('username', 3)
+            ->maxLength('username', 50)
             ->notEmpty('username')
             ->add('username', 'unique', ['rule' => 'validateUnique', 'provider' => 'table']);
 
@@ -72,9 +78,12 @@ class UsersTable extends Table
             ->add('email', 'unique', ['rule' => 'validateUnique', 'provider' => 'table']);
 
         $validator
-            ->integer('primary_role')
-            ->requirePresence('primary_role', 'create')
-            ->notEmpty('primary_role');
+            ->notEmpty('password')
+            ->minLength('password', 4)
+            ->maxLength('password', 512)
+            ->sameAs('password_verify', 'password')
+            ->notEmpty('password_verify');
+
 
         return $validator;
     }
@@ -83,7 +92,7 @@ class UsersTable extends Table
      * Returns a rules checker object that will be used for validating
      * application integrity.
      *
-     * @param \Cake\ORM\RulesChecker $rules The rules object to be modified.
+     * @param  \Cake\ORM\RulesChecker $rules The rules object to be modified.
      * @return \Cake\ORM\RulesChecker
      */
     public function buildRules(RulesChecker $rules)

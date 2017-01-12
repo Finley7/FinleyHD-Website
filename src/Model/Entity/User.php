@@ -1,7 +1,9 @@
 <?php
 namespace App\Model\Entity;
 
+use Cake\Auth\DefaultPasswordHasher;
 use Cake\ORM\Entity;
+use Cake\ORM\TableRegistry;
 
 /**
  * User Entity
@@ -31,4 +33,53 @@ class User extends Entity
         '*' => true,
         'id' => false
     ];
+
+
+    /**
+     * @param string $permissionName Permission name
+     *
+     * @return bool
+     */
+    public function hasPermission($permissionName)
+    {
+        return in_array($permissionName, $this->_getPermissions());
+    }
+
+    /**
+     * @return array
+     */
+    public function _getPermissions()
+    {
+        $_permissions = [];
+        foreach ($this->_getRoles() as $role) {
+            foreach ($role->permissions as $permission) {
+                $_permissions[] = $permission->name;
+            }
+        }
+        return array_unique($_permissions);
+    }
+
+    /**
+     * @return array
+     */
+    private function _getRoles()
+    {
+        $permissionsRegistry = TableRegistry::get('UserRoles');
+        $userRoles = $permissionsRegistry->findByUserId($this->id)->contain(['Roles' => ['Permissions']]);
+        $roles = [];
+        foreach ($userRoles as $userRole) {
+            $roles[] = $userRole->role;
+        }
+        return $roles;
+    }
+
+    /**
+     * @param string $password Given password
+     *
+     * @return mixed
+     */
+    protected function _setPassword($password)
+    {
+        return (new DefaultPasswordHasher)->hash($password);
+    }
 }

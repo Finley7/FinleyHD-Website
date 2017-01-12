@@ -14,19 +14,32 @@
  */
 namespace App\Controller;
 
-
+use Cake\Core\Configure;
 use Cake\Event\Event;
 
+/**
+ * Class PagesController
+ * @package App\Controller
+ */
 class PagesController extends AppController
 {
 
-    public function beforeFilter ( Event $event )
+    /**
+     * @param Event $event CakePHP Event
+     * @return void
+     */
+    public function beforeFilter(Event $event)
     {
         $this->Auth->allow(['index']);
     }
 
+    /**
+     * @return void
+     */
     public function index()
     {
+        $page = $this->Pages->get(Configure::read('App.defaultPageId'));
 
+        $this->set(compact('page'));
     }
 }
