@@ -46,7 +46,7 @@ Router::defaultRouteClass(DashedRoute::class);
 Router::scope('/', function (RouteBuilder $routes) {
 
 
-    $routes->connect('/', ['controller' => 'Pages', 'action' => 'index', 'home']);
+    $routes->connect('/', ['controller' => 'Slugs', 'action' => 'view', 'Home', 'home']);
     $routes->connect('/page/:slug', [ 'controller' => 'Slugs', 'action' => 'view'], ['pass' => ['slug']]);
 
 

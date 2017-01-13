@@ -36,13 +36,6 @@ class PermissionsTable extends Table
         $this->displayField('name');
         $this->primaryKey('id');
 
-        $this->belongsToMany(
-            'Roles',
-            [
-            'foreignKey' => 'permission_id',
-            'trough' => 'RolePermissions'
-            ]
-        );
     }
 
     /**

@@ -37,20 +37,15 @@ class RolePermissionsTable extends Table
         $this->displayField('permission_id');
         $this->primaryKey(['permission_id', 'role_id']);
 
-        $this->belongsTo(
-            'Permissions',
-            [
-            'foreignKey' => 'permission_id',
-            'joinType' => 'INNER'
-            ]
-        );
-        $this->belongsTo(
-            'Roles',
-            [
+        $this->belongsTo('Roles', [
             'foreignKey' => 'role_id',
-            'joinType' => 'INNER'
-            ]
-        );
+            'joinType' => 'INNER',
+        ]);
+
+        $this->belongsTo('Permissions', [
+            'foreignKey' => 'permission_id',
+            'joinType' => 'INNER',
+        ]);
     }
 
     /**

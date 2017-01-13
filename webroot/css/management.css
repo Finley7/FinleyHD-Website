@@ -1,12 +1,12 @@
-@import url('https://fonts.googleapis.com/css?family=Roboto+Mono:300,300i,400,400i,700,700i');
+@import url('https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i');
 
 body, html {
-    font-family: 'Roboto Mono', monospace;
+    font-family: 'Roboto', sans-erif;
     margin: 0;
 }
 
 h1, h2, h3, h4, h5 {
-    font-family: 'Roboto Mono', monospace !important;
+    font-family: 'Roboto', sans-serif !important;
     margin: 0;
     padding: 0;
 }
@@ -20,28 +20,29 @@ a, a:visited, a:active, a:focus {
     -o-transition: border-bottom .1s linear;
     transition: border-bottom .1s linear;
 }
-
 a:hover {
     color:#000;
     border-bottom: 2px dashed #2196f3;
 }
 
 .header {
-    background: #fff;
-    margin-top: 60px;
+    background: #e3f2fd;
+    padding:0;
+    margin:0;
+    margin-bottom: 20px;
 }
 
 .header .menu {
-    background: #fff;
+    background: #e3f2fd;
 }
 
 .header .menu li a {
     color: #000;
-    border-bottom: 2px dashed transparent;
+    border-bottom: 2px solid transparent;
 }
 
 .header .menu li a:hover {
-    border-bottom: 2px dashed #2196f3;
+    border-bottom: 2px solid #2196f3;
 }
 
 .text-muted {
@@ -103,20 +104,29 @@ input[type=number] {
     font-family: 'FontAwesome';
     padding-right: 0.3125rem;
 }
-
-footer {
-    background: #e3f2fd;
-    padding-top: 15px;
+.panel {
+    border: 2px solid #e3f2fd;
+    padding:5px 10px;
 }
 
-.right-footer {
-    text-align: right;
+a.button {
+    border-bottom:2px dashed transparent;
+    color:#fff!important;
 }
 
-.right-footer ul {
-    list-style-type: none;
+.button, button {
+    border-radius: 2px;
+    padding: 7px 12px;
 }
 
-.left-footer {
-    padding-top: 15px;
+.button:before {
+    padding-right: 0.3125rem;
+}
+.button.add:before {
+    content: '\f067';
+    font-family: 'FontAwesome';
+}
+.button.delete:before {
+    content: '\f067';
+    font-family: 'FontAwesome';
 }

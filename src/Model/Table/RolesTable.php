@@ -37,18 +37,13 @@ class RolesTable extends Table
         $this->displayField('name');
         $this->primaryKey('id');
 
-        $this->hasMany('Permissions', [
-                'foreignKey' => 'id',
-                'targetForeignKey' => 'role_id',
-                'joinTable' => 'role_permissions'
-            ]
-        );
-        $this->hasMany(
-            'UserRoles',
-            [
-            'foreignKey' => 'role_id'
-            ]
-        );
+        $this->belongsToMany('Users', [
+            'joinTable' => 'user_roles'
+        ]);
+
+        $this->belongsToMany('Permissions', [
+            'joinTable' => 'role_permissions'
+        ]);
     }
 
     /**

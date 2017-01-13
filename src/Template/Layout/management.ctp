@@ -31,7 +31,7 @@ $cakeDescription = 'FinleyHD';
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
 
     <?= $this->Html->css( [
-        'normalize.css', 'app.css'
+        'normalize.css', 'management.css'
     ] ); ?>
 
     <?= $this->fetch( 'meta' ) ?>
@@ -43,17 +43,15 @@ $cakeDescription = 'FinleyHD';
     <div class="row">
         <div class="top-bar-left">
             <ul class="menu">
-                <li class="menu-text">Finleyhd <span class="text-muted">~ Simple web developer</span></li>
+                <li class="menu-text">Finleyhd <span class="text-muted">~ Beheer</span></li>
             </ul>
         </div>
         <div class="top-bar-right">
             <ul class="menu">
-                <?php foreach ( $pages as $page ): ?>
-                    <li><?= $this->Html->link( $page->title, [
-                            'controller' => 'Slugs', 'action' => 'view', $page->slugs[0]->name
-                        ] ); ?></li>
-                <?php endforeach; ?>
-                <li><?= $this->Html->link( 'Blog', ['controller' => 'Blogs', 'action' => 'index'] ); ?></li>
+                <li><?= $this->Html->link('Blog management', ['controller' => 'Blogs', 'action' => 'index'] ); ?></li>
+                <li><?= $this->Html->link('User management', ['controller' => 'Blogs', 'action' => 'index'] ); ?></li>
+                <li><?= $this->Html->link('Page management', ['controller' => 'Blogs', 'action' => 'index'] ); ?></li>
+
             </ul>
         </div>
     </div>
@@ -70,21 +68,10 @@ $cakeDescription = 'FinleyHD';
 
 <footer>
     <div class="row">
-        <div class="medium-6 columns left-footer">
+        <div class="medium-12 columns left-footer">
             <p>
-                Copyright &copy; 2017 FinleyHD ~ Alle rechten voorbehouden
+                Copyright &copy; 2017 FinleyHD Beheer~ Alle rechten voorbehouden
             </p>
-        </div>
-        <div class="medium-6 columns right-footer">
-            <ul>
-                <?php if(!isset($user)): ?>
-                    <li><?= $this->Html->link(__('Log in'), ['controller' => 'Users', 'action' => 'login']); ?></li>
-                    <li><?= $this->Html->link(__('Create an account'), ['controller' => 'Users', 'action' => 'add']); ?></li>
-                <?php else: ?>
-                    <li class='menu-text'><?= __('Logged in as'); ?> <?= $user->username; ?></li>
-                    <?= ($user->hasPermission('management_blogs_index')) ? '<li>' . $this->Html->link(__('Management'), ['controller' => 'Blogs', 'action' => 'index', 'prefix' => 'management']) . '</li>' : ''; ?>
-                <?php endif; ?>
-            </ul>
         </div>
     </div>
 </footer>

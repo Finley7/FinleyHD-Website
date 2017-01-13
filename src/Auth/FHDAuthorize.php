@@ -58,6 +58,8 @@ class FHDAuthorize extends BaseAuthorize
             return true;
         }
 
+        debug($userObject);
+        die();
         return false;
     }
 }
